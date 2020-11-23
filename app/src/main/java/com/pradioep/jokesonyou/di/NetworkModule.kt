@@ -4,6 +4,7 @@ import android.content.Context
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
+import com.pradioep.jokesonyou.Constant
 import com.pradioep.jokesonyou.repository.Service
 import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
@@ -43,7 +44,7 @@ inline fun <reified T> createWebService(okHttpClient: OkHttpClient): T {
         .create()
 
     val retrofit = Retrofit.Builder()
-        .baseUrl("https://api.chucknorris.io/jokes/")
+        .baseUrl(Constant.BASE_URL)
         .client(okHttpClient)
         .addConverterFactory(ScalarsConverterFactory.create())
         .addConverterFactory(GsonConverterFactory.create(gson))
