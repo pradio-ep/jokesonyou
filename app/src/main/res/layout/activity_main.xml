@@ -26,13 +26,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginStart="24dp"
                     android:textSize="38sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
-                    android:text="Search" />
+                    android:text="@string/search" />
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -51,12 +51,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                             <ImageView
-                                android:id="@+id/ic_back"
+                                android:id="@+id/ic_search"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:src="@drawable/ic_search"
                                 android:padding="12dp"
-                                android:onClick="@{()->vm.onClickBack()}"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"/>
                             <EditText
@@ -68,8 +67,8 @@
                                 android:padding="12dp"
                                 android:inputType="text"
                                 android:imeOptions="actionDone"
-                                android:hint="Keyword"
-                                app:layout_constraintStart_toEndOf="@+id/ic_back"
+                                android:hint="@string/search_hint"
+                                app:layout_constraintStart_toEndOf="@+id/ic_search"
                                 app:layout_constraintEnd_toStartOf="@+id/ic_close"
                                 app:layout_constraintTop_toTopOf="parent" />
                             <com.github.ybq.android.spinkit.SpinKitView
@@ -98,11 +97,21 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rv_search"
-                            android:visibility="gone"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="200dp"
+                            android:scrollbars="vertical"
+                            android:scrollbarStyle="insideOverlay"
+                            android:visibility="gone"
                             tools:listitem="@layout/item_search"
-                            tools:itemCount="2" />
+                            tools:itemCount="5" />
+                        <TextView
+                            android:id="@+id/txt_not_found"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="16dp"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            android:text="@string/not_found"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
                 <TextView
@@ -113,12 +122,13 @@
                     android:textSize="38sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
-                    android:text="Categories" />
+                    android:text="@string/categories" />
                 <com.pradioep.jokesonyou.widget.GridViewWrapContent
                     android:id="@+id/grid_category"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="24dp"
                     android:horizontalSpacing="8dp"
@@ -127,6 +137,15 @@
                     android:stretchMode="columnWidth"
                     android:gravity="center"
                     android:scrollbars="none"/>
+                <TextView
+                    android:id="@+id/txt_something_wrong"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="16dp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:textSize="24sp"
+                    android:text="@string/something_wrong"/>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

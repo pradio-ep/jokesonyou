@@ -44,6 +44,12 @@ class MainActivity : BaseActivity(), SearchAdapter.SearchListener, CategoryAdapt
                     else { hideWaitingDialog() }
                 }
             })
+            isLoadingSearch.observe(this@MainActivity, { bool ->
+                bool.let { loading ->
+                    if(loading){ ic_loading.visibility = View.VISIBLE }
+                    else { ic_loading.visibility = View.GONE }
+                }
+            })
             showMessage.observe(this@MainActivity, {
                 if (it is String) {
                     UtilityHelper.showErrorMessage(view_parent, it)
@@ -59,22 +65,26 @@ class MainActivity : BaseActivity(), SearchAdapter.SearchListener, CategoryAdapt
                     UtilityHelper.showErrorMessage(view_parent, it)
                 }
             })
-            clickBack.observe(this@MainActivity, {
-                et_search.clearFocus()
-                ic_back.setImageResource(R.drawable.ic_search)
-                et_search.setText("")
-            })
-            clickClose.observe(this@MainActivity) {
-                et_search.setText("")
-                ic_close.visibility = View.GONE
-                rv_search.visibility = View.GONE
-            }
             listSearch.observe(this@MainActivity, {
                 setListSearch(it)
             })
             listCategory.observe(this@MainActivity, {
                 setCategory(it)
             })
+            notFound.observe(this@MainActivity, {
+                rv_search.visibility = View.GONE
+                txt_not_found.visibility = View.VISIBLE
+            })
+            somethingWrong.observe(this@MainActivity, {
+                grid_category.visibility = View.GONE
+                txt_something_wrong.visibility = View.VISIBLE
+            })
+            clickClose.observe(this@MainActivity) {
+                et_search.setText("")
+                ic_close.visibility = View.GONE
+                rv_search.visibility = View.GONE
+                txt_not_found.visibility = View.GONE
+            }
         }
 
         setView()
@@ -107,9 +117,6 @@ class MainActivity : BaseActivity(), SearchAdapter.SearchListener, CategoryAdapt
     }
 
     private fun setupSearch() {
-        et_search.setOnFocusChangeListener { _ , _ ->
-            ic_back.setImageResource(R.drawable.ic_back)
-        }
         et_search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -128,6 +135,7 @@ class MainActivity : BaseActivity(), SearchAdapter.SearchListener, CategoryAdapt
     }
 
     private fun setListSearch(list: ArrayList<Result>){
+        txt_not_found.visibility = View.GONE
         rv_search.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = SearchAdapter(this@MainActivity, list, this@MainActivity).also {
@@ -138,7 +146,7 @@ class MainActivity : BaseActivity(), SearchAdapter.SearchListener, CategoryAdapt
 
     override fun onClickSearchResult(result: Result) {
         UtilityHelper.hideSoftKeyboard(this)
-        rv_search.visibility = View.GONE
+        viewModel.clickClose.call()
 
         val intent = Intent(this, DetailActivity::class.java)
         intent.putExtra(Constant.SEARCH_RESULT, true)
@@ -148,6 +156,8 @@ class MainActivity : BaseActivity(), SearchAdapter.SearchListener, CategoryAdapt
     }
 
     private fun setCategory(listCategory: ArrayList<String>) {
+        txt_something_wrong.visibility = View.GONE
+        grid_category.visibility = View.VISIBLE
         grid_category.apply {
             adapter = CategoryAdapter(this@MainActivity, listCategory, this@MainActivity)
         }

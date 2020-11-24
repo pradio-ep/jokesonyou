@@ -2,7 +2,6 @@ package com.pradioep.jokesonyou.adapter
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +9,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
-import com.pradioep.jokesonyou.Constant
 import com.pradioep.jokesonyou.R
-import com.pradioep.jokesonyou.model.Result
-import com.pradioep.jokesonyou.ui.detail.DetailActivity
 
 class CategoryAdapter(private val activity: Activity, private val categories: ArrayList<String>,
                       private val listener: CategoryListener) : BaseAdapter() {
@@ -22,15 +18,15 @@ class CategoryAdapter(private val activity: Activity, private val categories: Ar
             ContextCompat.getColor(activity, R.color.green),
             ContextCompat.getColor(activity, R.color.yellow),
             ContextCompat.getColor(activity, R.color.red),
-            ContextCompat.getColor(activity, R.color.black),
+            ContextCompat.getColor(activity, R.color.teal_200),
             ContextCompat.getColor(activity, R.color.yellow),
             ContextCompat.getColor(activity, R.color.blue),
             ContextCompat.getColor(activity, R.color.red),
-            ContextCompat.getColor(activity, R.color.black),
+            ContextCompat.getColor(activity, R.color.brown),
             ContextCompat.getColor(activity, R.color.green),
             ContextCompat.getColor(activity, R.color.blue),
             ContextCompat.getColor(activity, R.color.red),
-            ContextCompat.getColor(activity, R.color.black),
+            ContextCompat.getColor(activity, R.color.brown),
             ContextCompat.getColor(activity, R.color.blue),
             ContextCompat.getColor(activity, R.color.red),
             ContextCompat.getColor(activity, R.color.green),
