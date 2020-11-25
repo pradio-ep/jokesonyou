@@ -1,10 +1,9 @@
-# Github-User
+# Jokes on You
 
 Android app to read the best Chuck Norris jokes for made your day =)
 
 ## Credits
-Special thanks to:
-[chucknorris.io](https://api.chucknorris.io/) for data sources.
+Special thanks to [chucknorris.io](https://api.chucknorris.io/) for data sources.
 
 I used:
 - [Retrofit](https://square.github.io/retrofit/) by Square for HTTP client.
