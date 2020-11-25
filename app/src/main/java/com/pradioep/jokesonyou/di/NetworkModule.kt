@@ -1,11 +1,11 @@
 package com.pradioep.jokesonyou.di
 
-import android.content.Context
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
 import com.pradioep.jokesonyou.Constant
 import com.pradioep.jokesonyou.repository.Service
+import com.pradioep.jokesonyou.util.MockInterceptor
 import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -16,19 +16,21 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 
 val NetworkModule = module {
-    single { createOkHttpClient(get()) }
+    single { createOkHttpClient() }
     single { createWebService<Service>(get()) }
 }
 
-fun createOkHttpClient(applicationContext: Context): OkHttpClient {
+fun createOkHttpClient(): OkHttpClient {
     val httpLoggingInterceptor = HttpLoggingInterceptor()
     httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+
+    val mockInterceptor = MockInterceptor()
 
     return OkHttpClient.Builder()
         .connectTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
         .writeTimeout(30, TimeUnit.SECONDS)
-        .addInterceptor(httpLoggingInterceptor)
+        .addInterceptor(httpLoggingInterceptor).addInterceptor(mockInterceptor)
         .connectionSpecs(listOf(ConnectionSpec.COMPATIBLE_TLS))
         .build()
 }

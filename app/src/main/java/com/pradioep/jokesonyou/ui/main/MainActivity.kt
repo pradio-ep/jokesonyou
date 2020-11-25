@@ -109,7 +109,6 @@ class MainActivity : BaseActivity(), SearchAdapter.SearchListener, CategoryAdapt
             }
             if (query.length > 2) {
                 viewModel.searchJokes(query.toString())
-                rv_search.visibility = View.VISIBLE
             } else {
                 rv_search.visibility = View.GONE
             }
@@ -136,6 +135,7 @@ class MainActivity : BaseActivity(), SearchAdapter.SearchListener, CategoryAdapt
 
     private fun setListSearch(list: ArrayList<Result>){
         txt_not_found.visibility = View.GONE
+        rv_search.visibility = View.VISIBLE
         rv_search.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = SearchAdapter(this@MainActivity, list, this@MainActivity).also {
