@@ -77,7 +77,7 @@ class MainActivity : BaseActivity(), SearchAdapter.SearchListener, CategoryAdapt
             })
             somethingWrong.observe(this@MainActivity, {
                 grid_category.visibility = View.GONE
-                txt_something_wrong.visibility = View.VISIBLE
+                rl_error.visibility = View.VISIBLE
             })
             clickClose.observe(this@MainActivity) {
                 et_search.setText("")
@@ -85,6 +85,9 @@ class MainActivity : BaseActivity(), SearchAdapter.SearchListener, CategoryAdapt
                 rv_search.visibility = View.GONE
                 txt_not_found.visibility = View.GONE
             }
+            clickTryAgain.observe(this@MainActivity, {
+                viewModel.getCategories()
+            })
         }
 
         setView()
@@ -156,7 +159,7 @@ class MainActivity : BaseActivity(), SearchAdapter.SearchListener, CategoryAdapt
     }
 
     private fun setCategory(listCategory: ArrayList<String>) {
-        txt_something_wrong.visibility = View.GONE
+        rl_error.visibility = View.GONE
         grid_category.visibility = View.VISIBLE
         grid_category.apply {
             adapter = CategoryAdapter(this@MainActivity, listCategory, this@MainActivity)

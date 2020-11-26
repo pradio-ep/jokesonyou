@@ -137,15 +137,39 @@
                     android:stretchMode="columnWidth"
                     android:gravity="center"
                     android:scrollbars="none"/>
-                <TextView
-                    android:id="@+id/txt_something_wrong"
+                <RelativeLayout
+                    android:id="@+id/rl_error"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="16dp"
-                    android:gravity="center"
+                    android:layout_height="wrap_content"
                     android:visibility="gone"
-                    android:textSize="24sp"
-                    android:text="@string/something_wrong"/>
+                    android:padding="32dp">
+                    <TextView
+                        android:id="@+id/txt_something_wrong"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textSize="24sp"
+                        android:text="@string/something_wrong"/>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginStart="48dp"
+                        android:layout_marginEnd="48dp"
+                        android:layout_below="@+id/txt_something_wrong"
+                        android:gravity="center"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="8dp">
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/rounded_border"
+                            android:onClick="@{()->vm.onClickTryAgain()}"
+                            android:textColor="@color/white"
+                            android:text="@string/try_again"/>
+                    </androidx.cardview.widget.CardView>
+                </RelativeLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

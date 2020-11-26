@@ -4,12 +4,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.haroldadmin.cnradapter.NetworkResponse
 import com.pradioep.jokesonyou.model.Result
-import com.pradioep.jokesonyou.repository.Service
+import com.pradioep.jokesonyou.repository.Repository
 import com.pradioep.jokesonyou.ui.base.BaseViewModel
 import com.pradioep.jokesonyou.util.SingleLiveEvent
 import kotlinx.coroutines.launch
 
-class DetailViewModel(private val service: Service): BaseViewModel() {
+class DetailViewModel(private val repository: Repository): BaseViewModel() {
 
     val joke = MutableLiveData<String>()
     val date = MutableLiveData<String>()
@@ -19,7 +19,7 @@ class DetailViewModel(private val service: Service): BaseViewModel() {
     fun getRandomJokeByCategory(category: String) {
         isLoading.value = true
         viewModelScope.launch {
-            when (val response = service.randomByCategory(category)) {
+            when (val response = repository.randomByCategory(category)) {
                 is NetworkResponse.Success -> {
                     isLoading.value = false
                     randomJoke.value = response.body

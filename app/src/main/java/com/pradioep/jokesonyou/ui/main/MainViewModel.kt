@@ -4,23 +4,24 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.haroldadmin.cnradapter.NetworkResponse
 import com.pradioep.jokesonyou.model.Result
-import com.pradioep.jokesonyou.repository.Service
+import com.pradioep.jokesonyou.repository.Repository
 import com.pradioep.jokesonyou.ui.base.BaseViewModel
 import com.pradioep.jokesonyou.util.SingleLiveEvent
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val service: Service): BaseViewModel() {
+class MainViewModel(private val repository: Repository): BaseViewModel() {
 
     val listSearch = MutableLiveData<ArrayList<Result>>()
     val listCategory = MutableLiveData<ArrayList<String>>()
     val notFound = SingleLiveEvent<Unit>()
     val somethingWrong = SingleLiveEvent<Unit>()
     val clickClose = SingleLiveEvent<Unit>()
+    val clickTryAgain = SingleLiveEvent<Unit>()
 
     fun searchJokes(keyword: String) {
         isLoadingSearch.value = true
         viewModelScope.launch {
-            when (val response = service.search(keyword)) {
+            when (val response = repository.search(keyword)) {
                 is NetworkResponse.Success -> {
                     isLoadingSearch.value = false
                     val result = response.body.result
@@ -45,7 +46,7 @@ class MainViewModel(private val service: Service): BaseViewModel() {
     fun getCategories() {
         isLoading.value = true
         viewModelScope.launch {
-            when (val response = service.categories()) {
+            when (val response = repository.categories()) {
                 is NetworkResponse.Success -> {
                     isLoading.value = false
                     listCategory.value = response.body
@@ -66,5 +67,9 @@ class MainViewModel(private val service: Service): BaseViewModel() {
 
     fun onClickClose() {
         clickClose.call()
+    }
+
+    fun onClickTryAgain() {
+        clickTryAgain.call()
     }
 }

@@ -3,6 +3,7 @@
     <string name="search">Search</string>
     <string name="search_hint">Keyword</string>
     <string name="not_found">Not Found</string>
-    <string name="something_wrong">Something Wrong,\n Try Again Later</string>
+    <string name="something_wrong">Something Wrong</string>
+    <string name="try_again">Try Again</string>
     <string name="categories">Categories</string>
 </resources>
