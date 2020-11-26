@@ -14,9 +14,9 @@ I used:
 - [Android Lifecycle](https://developer.android.com/jetpack/androidx/releases/lifecycle) by Android.
 - [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) by Jetbrains.
 
-Screenshot:
-![Splash](./screenshot/1-splash.jpg)
-![Home](./screenshot/2-home.jpg)
-![Search](./screenshot/3-search.jpg)
-![Detail](./screenshot/4-detail.jpg)
-![Error](./screenshot/5-error.jpg)
+## Screenshot
+- ![Splash](./screenshot/1-splash.jpg)
+- ![Home](./screenshot/2-home.jpg)
+- ![Search](./screenshot/3-search.jpg)
+- ![Detail](./screenshot/4-detail.jpg)
+- ![Error](./screenshot/5-error.jpg)
