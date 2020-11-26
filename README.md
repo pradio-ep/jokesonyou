@@ -15,8 +15,17 @@ I used:
 - [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) by Jetbrains.
 
 ## Screenshot
-- Splash ![Splash](./screenshot/1-splash.jpg)
-- Home ![Home](./screenshot/2-home.jpg)
-- Search ![Search](./screenshot/3-search.jpg)
-- Detail ![Detail](./screenshot/4-detail.jpg)
-- Error ![Error](./screenshot/5-error.jpg)
+- Splash
+![Splash](./screenshot/1-splash.jpg)
+
+- Home
+![Home](./screenshot/2-home.jpg)
+
+- Search
+![Search](./screenshot/3-search.jpg)
+
+- Detail
+![Detail](./screenshot/4-detail.jpg)
+
+- Error
+![Error](./screenshot/5-error.jpg)
